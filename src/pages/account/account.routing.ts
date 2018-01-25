@@ -7,6 +7,10 @@ export const AccountRoutes: Routes = [
 
     {
         path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+    },{
+        path: '',
         children: [ {
             path: 'login',
             component: LoginComponent

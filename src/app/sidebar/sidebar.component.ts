@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { AccountService } from 'providers/account.service';
+import { UtilsService } from 'providers/utils.service';
+import { Router } from '@angular/router';
 
 declare const $: any;
 
@@ -101,27 +104,53 @@ export const ROUTES: RouteInfo[] = [{
 @Component({
     selector: 'app-sidebar-cmp',
     templateUrl: 'sidebar.component.html',
+    providers: [AccountService, UtilsService]
 })
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    public name: string = "user";
+    public userPhoto: string = "";
+    
+    constructor(private accountService: AccountService, private utilsService: UtilsService, private router: Router) {
+        this.getMe();
+    }
+
+    ngOnInit() {
+        this.menuItems = ROUTES.filter(menuItem => menuItem);
+    }
+
+    getMe() {
+        this.accountService.getMe()
+            .subscribe(res => {
+                if(res.isSuccess) {
+                    this.name = res.data.firstName + " " + res.data.lastName;
+                    this.userPhoto = res.data.photoUrl;
+                } else {
+                    this.utilsService.showNotification("danger", res.message);
+                }  
+        });
+    }
+
+    logout() {
+        sessionStorage.clear();
+        this.router.navigate(["/account"]);
+    }
 
     isMobileMenu() {
         if ($(window).width() > 991) {
             return false;
         }
         return true;
-    };
-
-    ngOnInit() {
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
+
     updatePS(): void  {
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
             let ps = new PerfectScrollbar(elemSidebar, { wheelSpeed: 2, suppressScrollX: true });
         }
     }
+
     isMac(): boolean {
         let bool = false;
         if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {

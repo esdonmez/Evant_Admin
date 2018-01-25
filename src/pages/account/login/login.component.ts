@@ -1,5 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AccountService } from 'providers/account.service';
+import { UtilsService } from 'providers/utils.service';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -12,7 +15,8 @@ declare interface ValidatorFn {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: []
+  styleUrls: [],
+  providers: [AccountService, UtilsService]
 })
 export class LoginComponent implements OnInit {
 
@@ -21,9 +25,10 @@ export class LoginComponent implements OnInit {
   private sidebarVisible: boolean;
   private nativeElement: Node;
   loginFormGroup : FormGroup;
-  loginCredentials = {email: "", password: ""};
+  loginCredentials = {email: "", password: "", deviceId: "string"};
+  token: string = "";
 
-  constructor(private element: ElementRef, private formBuilder: FormBuilder) {
+  constructor(private element: ElementRef, private formBuilder: FormBuilder, private router: Router, private accountService: AccountService, private utilsService: UtilsService) {
       this.nativeElement = element.nativeElement;
       this.sidebarVisible = false;
   }
@@ -61,7 +66,16 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginFormGroup.valid) {
-        console.log('form submitted');
+      this.accountService.login(this.loginCredentials)
+          .subscribe(res => {
+            if(res.isSuccess) {
+                this.token = res.data;
+                sessionStorage.setItem("token", this.token);
+                this.router.navigate(["/dashboard"]);
+            } else {
+                this.utilsService.showNotification("danger", res.message);
+            }  
+      });
     } else {
         this.validateAllFormFields(this.loginFormGroup);
     }
