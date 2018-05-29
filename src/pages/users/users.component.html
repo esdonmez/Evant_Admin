@@ -4,10 +4,12 @@
           <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-icon" data-background-color="purple">
-                      <i class="material-icons">laptop_mac</i>
+                      <i class="material-icons">face</i>
                   </div>
                   <div class="card-content">
-                      <h4 class="card-title">Logs</h4>
+                      <div class="row">
+                          <h4 class="col-xs-10 card-title">Users</h4>
+                      </div>
                       <div class="toolbar">
                           <!--        Here you can write extra buttons/actions for the toolbar              -->
                       </div>
@@ -16,25 +18,21 @@
                               <thead class="text-primary">
                                   <tr>
                                       <th>Id</th>
-                                      <th>Created Date</th>
-                                      <th>Exception</th>
-                                      <th>Ip</th>
-                                      <th>Status</th>
-                                      <th>Action</th>
-                                      <th>Controller</th>
-                                      <th>Message</th>
+                                      <th>Name</th>
+                                      <th>Surname</th>
+                                      <th>Email</th>
+                                      <th>Role</th>
+                                      <th>Photo</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr *ngFor="let log of logs">
-                                      <td>{{ log.id }}</td>
-                                      <td>{{ log.createdAt }}</td>
-                                      <td>{{ log.exception }}</td>
-                                      <td>{{ log.ip }}</td>
-                                      <td>{{ log.statusCode }}</td>
-                                      <td>{{ log.action }}</td>
-                                      <td>{{ log.controller }}</td>
-                                      <td>{{ log.message }}</td>
+                                  <tr *ngFor="let user of users">
+                                      <td>{{ user.id }}</td>
+                                      <td>{{ user.name }}</td>
+                                      <td>{{ user.surname }}</td>
+                                      <td>{{ user.email }}</td>
+                                      <td>{{ user.role }}</td>
+                                      <td>{{ user.photo }}</td>
                                   </tr>
                               </tbody>
                           </table>
@@ -46,6 +44,6 @@
           </div>
           <!-- end col-md-12 -->
       </div>
-      <!-- end row --> 
+      <!-- end row -->
   </div>
 </div>

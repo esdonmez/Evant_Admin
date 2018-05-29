@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { UserRoutes } from 'pages/users/users.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DataTablesModule } from 'angular-datatables';
-import { EventRoutes } from 'pages/event/event.routing';
-import { EventOperationsComponent } from 'pages/event/eventOperations/eventOperations.component';
-import { EventsComponent } from 'pages/event/events/events.component';
+import { UsersComponent } from 'pages/users/users.component';
 import { MaterialModule } from 'app/app.module';
+import { DataTablesModule } from 'angular-datatables/src/angular-datatables.module';
+import { NouisliderModule } from 'ng2-nouislider';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(EventRoutes),
+    RouterModule.forChild(UserRoutes),
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    NouisliderModule,
     DataTablesModule
   ],
   declarations: [
-    EventOperationsComponent,
-    EventsComponent
+    UsersComponent
   ]
 })
-export class EventModule { }
+export class UsersModule { }

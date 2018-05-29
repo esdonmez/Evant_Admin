@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventModel } from '../../../models/EventModel';
+import { FriendOperationModel } from '../../models/FriendOperationModel';
 import { Subject } from 'rxjs';
 import { AdminService } from 'providers/admin.service';
 import { UtilsService } from 'providers/utils.service';
@@ -8,14 +8,14 @@ declare const $: any;
 
 @Component({
   selector: 'app-logs',
-  templateUrl: './events.component.html',
+  templateUrl: './friendOperations.component.html',
   providers: [ AdminService, UtilsService ]
 })
-export class EventsComponent implements OnInit {
+export class FriendOperationsComponent implements OnInit {
 
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
-  public events: EventModel[];
+  public friendOperations: FriendOperationModel[];
 
   constructor(private adminService: AdminService, private utilsService: UtilsService) { }
 
@@ -30,11 +30,11 @@ export class EventsComponent implements OnInit {
       responsive: true
     };
 
-    this.adminService.getAllEvents()
+    this.adminService.getAllFriendOpeartions()
       .subscribe(res => {
           console.log(res.data)
           if(res.isSuccess) {
-              this.events = res.data;  
+              this.friendOperations = res.data;  
               this.dtTrigger.next(); 
           } else {
               this.utilsService.showNotification("danger", res.message);

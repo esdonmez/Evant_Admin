@@ -22,7 +22,7 @@ export class AccountService {
     this.headers = new Headers();
     this.headersToken = new Headers();
     this.headers.append('Content-Type', 'application/json');
-    this.headersToken.append('Authorization', `Bearer ${sessionStorage.getItem('token')}`);
+    this.headersToken.append('Authorization', "Bearer " +  sessionStorage.getItem('token'));
     
     this.options = new RequestOptions({ headers: this.headers });
     this.optionsToken = new RequestOptions({ headers: this.headersToken });
@@ -32,7 +32,6 @@ export class AccountService {
     let body = {
         email: loginCredentials.email,
         password: loginCredentials.password,
-        deviceId: loginCredentials.deviceId
     };
     
     return Observable.create(observer => {

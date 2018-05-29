@@ -1,6 +1,6 @@
 export class LogModel
 {
-    public id: number;
+    public id: string;
     
     public createdDate: string;
     

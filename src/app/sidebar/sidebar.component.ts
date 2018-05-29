@@ -22,18 +22,19 @@ export interface ChildrenItems {
     type?: string;
 }
 
-export const ROUTES: RouteInfo[] = [{
-        path: '/dashboard',
-        title: 'Dashboard',
+export const ROUTES: RouteInfo[] = [
+    {
+        path: '/logs',
+        title: 'Logs',
         type: 'link',
-        icontype: 'dashboard'
+        icontype: 'laptop_mac'
     },{
-        path: '/#',
+        path: '/users',
         title: 'Users',
         type: 'link',
         icontype: 'face'
     },{
-        path: '/#',
+        path: '/friendOperations',
         title: 'Friend Operations',
         type: 'link',
         icontype: 'wc'
@@ -45,9 +46,7 @@ export const ROUTES: RouteInfo[] = [{
         collapse: 'event',
         children: [
             {path: 'events', title: 'Events', ab: 'E'},
-            {path: 'eventdetail', title: 'Event Details', ab: 'ED'},
-            {path: '#', title: 'Event Operations', ab: 'EO'},
-            {path: '#', title: 'Event Tags', ab: 'ET'}
+            {path: 'eventOperations', title: 'Event Operations', ab: 'EO'},
         ]
     },{
         path: '/categories',
@@ -55,50 +54,15 @@ export const ROUTES: RouteInfo[] = [{
         type: 'link',
         icontype: 'apps'
     },{
-        path: '/#',
-        title: 'Addresses',
-        type: 'link',
-        icontype: 'store'
-    },{
-        path: '/#',
+        path: '/comments',
         title: 'Comments',
         type: 'link',
         icontype: 'comment'
     },{
-        path: '/#',
-        title: 'Notifications',
-        type: 'link',
-        icontype: 'notifications'
-    },{
-        path: '/#',
-        title: 'Report',
-        type: 'sub',
-        icontype: 'find_in_page',
-        collapse: 'report',
-        children: [
-            {path: '#', title: 'User Reports', ab: 'UR'},
-            {path: '#', title: 'Report Types', ab: 'RT'}
-        ]
-    },{
-        path: '/#',
+        path: '/searchHistories',
         title: 'Search Histories',
         type: 'link',
         icontype: 'youtube_searched_for'
-    },{
-        path: '/#',
-        title: 'User Devices',
-        type: 'link',
-        icontype: 'devices'
-    },{
-        path: '/tags',
-        title: 'Tags',
-        type: 'link',
-        icontype: 'loyalty'
-    },{
-        path: '/logs',
-        title: 'Logs',
-        type: 'link',
-        icontype: 'laptop_mac'
     }
 ];
 @Component({

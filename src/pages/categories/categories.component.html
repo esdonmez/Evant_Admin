@@ -28,14 +28,14 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let category of categories">
-                                        <td>{{ category.id }}</td>
+                                        <td>{{ category.categoryId }}</td>
                                         <td>{{ category.name }}</td>
-                                        <td>{{ category.icon }}</td>
+                                        <td>{{ category.photoUrl }}</td>
                                         <td class="td-actions text-right">
-                                            <button type="button" class="btn btn-success btn-simple" (click)="editClick(category.id)" data-toggle="modal" data-target="#noticeModal"  matTooltip="Edit" [matTooltipPosition]="'left'">
+                                            <button type="button" class="btn btn-success btn-simple" (click)="editClick(category.categoryId)" data-toggle="modal" data-target="#noticeModal"  matTooltip="Edit" [matTooltipPosition]="'left'">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-simple" (click)="removeClick(category.id)"  matTooltip="Remove" [matTooltipPosition]="'left'">
+                                            <button type="button" class="btn btn-danger btn-simple" (click)="removeClick(category.categoryId)"  matTooltip="Remove" [matTooltipPosition]="'left'">
                                                 <i class="material-icons">close</i>
                                             </button>
                                         </td>
@@ -67,7 +67,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating">
                                             <label class="control-label"></label>
-                                            <input type="text" name="id" class="form-control" [(ngModel)]="category.id" disabled>
+                                            <input type="text" name="id" class="form-control" [(ngModel)]="category.categoryId" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating">
                                             <label class="control-label"></label>
-                                            <input type="text" name="icon" class="form-control" [(ngModel)]="category.icon">
+                                            <input type="text" name="icon" class="form-control" [(ngModel)]="category.photoUrl">
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating">
                                             <label class="control-label"></label>
-                                            <input type="text" name="id" class="form-control" [(ngModel)]="category.id" disabled>
+                                            <input type="text" name="id" class="form-control" [(ngModel)]="category.categoryId" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating">
                                             <label class="control-label"></label>
-                                            <input type="text" name="icon" class="form-control" [(ngModel)]="category.icon">
+                                            <input type="text" name="icon" class="form-control" [(ngModel)]="category.photoUrl">
                                         </div>
                                     </div>
                                 </div>

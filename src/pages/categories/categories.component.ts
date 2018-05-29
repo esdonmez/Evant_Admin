@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
     public categories: CategoryModel[];
-    public category: CategoryModel = {id: 0, name: "", icon: ""};
+    public category: CategoryModel = {id: "", name: "", icon: ""};
 
     constructor(private categoryService: CategoryService, private utilsService: UtilsService) {}
 
@@ -116,7 +116,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     }
 
     refreshModel() {
-        this.category.id = 0;
+        this.category.id = "";
         this.category.icon = "";
         this.category.name = "";
     }

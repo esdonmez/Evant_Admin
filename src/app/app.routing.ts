@@ -18,7 +18,7 @@ export const AppRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [{
             path: '',
-            loadChildren: './dashboard/dashboard.module#DashboardModule'
+            loadChildren: '../pages/logs/logs.module#LogsModule'
         }, {
             path: 'categories',
             loadChildren: '../pages/categories/categories.module#CategoriesModule'            
@@ -26,11 +26,20 @@ export const AppRoutes: Routes = [
             path: 'event',
             loadChildren: '../pages/event/event.module#EventModule'            
         }, {
+            path: 'users',
+            loadChildren: '../pages/users/users.module#UsersModule'            
+        }, {
+            path: 'comments',
+            loadChildren: '../pages/comments/comments.module#CommentsModule'            
+        }, {
+            path: 'friendOperations',
+            loadChildren: '../pages/friendOperations/friendOperations.module#FriendOperationsModule'            
+        }, {
+            path: 'searchHistories',
+            loadChildren: '../pages/searchHistories/searchHistories.module#SearchHistoriesModule'            
+        }, {
             path: 'logs',
             loadChildren: '../pages/logs/logs.module#LogsModule'            
-        }, {
-            path: 'tags',
-            loadChildren: '../pages/tags/tags.module#TagsModule'            
         }]
     }, {
         path: '',

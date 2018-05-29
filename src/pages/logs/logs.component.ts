@@ -32,6 +32,7 @@ export class LogsComponent implements OnInit {
 
     this.logService.getAllLogs()
       .subscribe(res => {
+          console.log(res.data)
           if(res.isSuccess) {
               this.logs = res.data;  
               this.dtTrigger.next(); 

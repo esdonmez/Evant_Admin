@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(sessionStorage.getItem("token"));
     var navbar : HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
 
@@ -68,14 +69,15 @@ export class LoginComponent implements OnInit {
     if (this.loginFormGroup.valid) {
       this.accountService.login(this.loginCredentials)
           .subscribe(res => {
+            console.log(res);
             if(res.isSuccess) {
-                this.token = res.data;
+                this.token = res.data.token;
                 sessionStorage.setItem("token", this.token);
-                this.router.navigate(["/dashboard"]);
+                this.router.navigate(["/logs"]);
             } else {
                 this.utilsService.showNotification("danger", res.message);
-            }  
-      });
+            } 
+      })
     } else {
         this.validateAllFormFields(this.loginFormGroup);
     }

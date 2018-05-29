@@ -6,7 +6,7 @@ import { Configuration } from 'providers/provider.constants';
 
 
 @Injectable()
-export class LogService {
+export class CommentService {
 
   private url: string;
 
@@ -14,15 +14,15 @@ export class LogService {
   private options: RequestOptions;
 
   constructor(public _http: Http) {
-    this.url = Configuration.ServerWithApiUrl + 'admin/logs/';
+    this.url = Configuration.ServerWithApiUrl + 'admin/comments/';
 
     this.headers = new Headers();    
-    this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    this.headers.append('Content-Type', 'application/json');
 
     this.options = new RequestOptions({ headers: this.headers });
   }
 
-  public getAllLogs() {
+  public getAllComments() {
     return Observable.create(observer => {
       this._http.get(this.url).map(res => res.json()).subscribe(
           data => {
@@ -31,18 +31,6 @@ export class LogService {
           },
           err => console.log(err)          
         );
-    });
-  }
-
-  public deleteLog(id) {
-    return Observable.create(observer => {
-      this._http.delete(this.url + id, this.options).map(res => res.json()).subscribe(
-        data=>{
-          observer.next(data);
-          observer.complete();
-        },
-        err=> console.log(err) 
-      );
     });
   }
 }
